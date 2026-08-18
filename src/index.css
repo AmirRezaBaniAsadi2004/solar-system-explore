@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+:root {
+  --space-0: #030014;
+  --space-1: #07011f;
+  --space-2: #0d0530;
+  --nebula: #1a0b4e;
+  --accent: #7dd3fc;
+  --accent-warm: #fbbf24;
+  --accent-deep: #6366f1;
+  --text-primary: #eef2ff;
+  --text-secondary: #a5b4d4;
+  --text-muted: #6b7aa8;
+  --card-bg: rgba(13, 12, 42, 0.55);
+  --card-border: rgba(125, 211, 252, 0.18);
+  --card-border-hover: rgba(125, 211, 252, 0.45);
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 55% at 50% -10%, rgba(56, 28, 120, 0.32), transparent 60%),
+    radial-gradient(ellipse 90% 50% at 88% 108%, rgba(18, 55, 110, 0.22), transparent 60%),
+    var(--space-0);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(125, 211, 252, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 211, 252, 0.3);
+  border-radius: 3px;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent);
+}
+
+/* shared reveal utility — GSAP sets final states */
+.reveal {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

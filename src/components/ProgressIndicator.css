@@ -1,0 +1,89 @@
+.progress-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 14px clamp(16px, 4vw, 40px) 0;
+  pointer-events: none;
+}
+
+.progress-indicator__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto 10px;
+}
+
+.progress-indicator__label {
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.progress-indicator__mid {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.progress-indicator__body-name {
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-indicator__au {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.progress-indicator__leg {
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.progress-indicator__track {
+  max-width: 1180px;
+  height: 2px;
+  margin: 0 auto;
+  background: rgba(125, 211, 252, 0.14);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-indicator__fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #fbbf24, var(--pi-accent, var(--accent)));
+  box-shadow: 0 0 10px var(--pi-accent, var(--accent));
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .progress-indicator__label--start,
+  .progress-indicator__label--end {
+    display: none;
+  }
+}

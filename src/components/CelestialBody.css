@@ -1,0 +1,159 @@
+.celestial-body {
+  position: relative;
+  width: var(--body-size);
+  height: var(--body-size);
+  flex-shrink: 0;
+}
+
+.celestial-body__sphere {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    inset -18px -24px 60px rgba(0, 0, 0, 0.55),
+    0 0 60px var(--body-glow),
+    0 0 140px var(--body-glow);
+  z-index: 2;
+  transform: translateZ(0);
+}
+
+/* limb shading over the surface */
+.celestial-body__shade {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, transparent 45%, rgba(2, 2, 14, 0.55) 100%);
+}
+
+.celestial-body__aura {
+  position: absolute;
+  inset: -22%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--body-glow) 0%, transparent 62%);
+  opacity: 0.55;
+  animation: body-pulse 7s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* gas giant horizontal bands, drifting */
+.celestial-body__bands {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.celestial-body__bands span {
+  flex: 1;
+  background: var(--band-color);
+  opacity: 0.55;
+  animation: band-drift 46s linear infinite;
+  animation-delay: var(--band-delay);
+  filter: blur(1.5px);
+}
+
+.celestial-body__bands span:nth-child(odd) {
+  opacity: 0.75;
+}
+
+/* soft sheen sweeping across solid worlds */
+.celestial-body__sheen {
+  position: absolute;
+  inset: -50% -30%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.13) 50%, transparent 58%);
+  animation: sheen-sweep 13s ease-in-out infinite;
+}
+
+/* sun corona shimmer */
+.celestial-body__corona {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 236, 170, 0.5) 58%, rgba(255, 170, 60, 0.22) 72%, transparent 82%);
+  animation: corona-flicker 4.5s ease-in-out infinite;
+}
+
+/* Saturn rings: two halves so the sphere sits between them */
+.celestial-body__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 205%;
+  height: 205%;
+  transform: translate(-50%, -50%) rotate(-16deg) rotateX(74deg);
+  border-radius: 50%;
+  border: calc(var(--body-size) * 0.06) solid var(--ring-color);
+  box-shadow:
+    0 0 14px rgba(217, 201, 163, 0.35),
+    inset 0 0 14px rgba(217, 201, 163, 0.25);
+  opacity: 0.9;
+}
+
+.celestial-body__ring.ring-back {
+  z-index: 1;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.celestial-body__ring.ring-front {
+  z-index: 3;
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+}
+
+/* keep whole ring behind the sphere's glow on mobile-scale sizes */
+.celestial-body--ringed {
+  padding: 8% 0;
+}
+
+/* slow whole-body rotation for a living feel */
+.celestial-body__sphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0;
+}
+
+.celestial-body--roadmap .celestial-body__sphere {
+  animation: body-float 11s ease-in-out infinite;
+}
+
+.celestial-body--detail .celestial-body__sphere {
+  animation: none;
+}
+
+@keyframes body-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.45; }
+  50% { transform: scale(1.09); opacity: 0.7; }
+}
+
+@keyframes body-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes band-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(9%); }
+}
+
+@keyframes sheen-sweep {
+  0%, 100% { transform: translateX(-16%); }
+  50% { transform: translateX(16%); }
+}
+
+@keyframes corona-flicker {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celestial-body__sphere,
+  .celestial-body__aura,
+  .celestial-body__bands span,
+  .celestial-body__sheen,
+  .celestial-body__corona {
+    animation: none !important;
+  }
+}

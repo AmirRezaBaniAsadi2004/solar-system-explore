@@ -1,0 +1,41 @@
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.starfield canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.starfield-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+}
+
+.nebula-a {
+  width: 60vw;
+  height: 60vw;
+  top: -10%;
+  right: -15%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22), transparent 65%);
+}
+
+.nebula-b {
+  width: 50vw;
+  height: 50vw;
+  bottom: -10%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.14), transparent 65%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield-nebula {
+    filter: blur(60px);
+  }
+}
